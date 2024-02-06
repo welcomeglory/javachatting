@@ -20,15 +20,18 @@ class Sender extends Thread {
 	@Override
 	public void run() {
 		Scanner scanner = new Scanner(System.in); // 키보드 입력을 받기 위한 Scanner 객체 생성
+		int menuId = -1;
 		while(out != null) { // 출력 스트림이 null이 아닌 동안 반복
 			try {				
 				out.writeUTF(scanner.nextLine()); 
+//				String line = scanner.nextLine();
+//				menuId = Integer.parseInt(line);
+//				if(line=="1")
+//					System.out.println("1"+line);
 				// 키보드로부터 입력받은 메시지를 클라이언트로 전송
+
 			} catch (Exception e) {
 				e.printStackTrace(); // 예외 처리: 입출력 오류가 발생할 경우 스택 트레이스 출력
-			}
-		if(out.equals("그만")) {
-			break;
 			}
 		}
 	}
@@ -57,9 +60,6 @@ class Receiver extends Thread {
 			} catch (Exception e) {
 				e.printStackTrace(); // 예외 처리: 입출력 오류가 발생할 경우 스택 트레이스 출력
 			}
-			if(in.equals("그만")) {
-				break;
-				}
 		}
 	}
 }
