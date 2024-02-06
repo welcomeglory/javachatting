@@ -1,4 +1,4 @@
-package 미니프로젝트_회원관리;
+package firstproject;
 
 import java.util.Iterator;
 import java.util.List;
