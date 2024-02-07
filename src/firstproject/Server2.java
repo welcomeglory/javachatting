@@ -5,7 +5,7 @@ import java.net.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Server {
+public class Server2 {
     private static List<Post> posts = new ArrayList<>();
 
     public static void main(String[] args) {
@@ -78,7 +78,7 @@ public class Server {
         private String getPostList() {
             StringBuilder stringBuilder = new StringBuilder();
             for (int i = 0; i < posts.size(); i++) {
-                stringBuilder.append(i + 1).append(". ").append(posts.get(i)).append("\n");
+                stringBuilder.append(i).append(": ").append(posts.get(i)).append("\n");
             }
             return stringBuilder.toString();
         }
@@ -150,7 +150,7 @@ public class Server {
 
         @Override
         public String toString() {
-            return "제목: " + title + ", 내용: " + content + ", 작성자: " + author;
+            return "Title: " + title + ", Content: " + content + ", Author: " + author;
         }
     }
 }
