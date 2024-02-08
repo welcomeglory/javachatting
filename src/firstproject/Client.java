@@ -6,93 +6,76 @@ import java.net.*;
 public class Client {
     public static void main(String[] args) {
         try {
-            Socket socket = new Socket("localhost", 12345); // ¼­¹ö ÁÖ¼Ò¿Í Æ÷Æ® ¹øÈ£
+            Socket socket = new Socket("localhost", 12345); 
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            PrintWriter out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()), true);
             BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
 
             while (true) {
-            	System.out.println("==========================================");
-                System.out.print("1. ¸ñ·Ï"+"\t");
-                System.out.print("2. µî·Ï"+"\t");
-                System.out.print("3. ¼öÁ¤"+"\t");
-                System.out.print("4. »èÁ¦"+"\t");
-                System.out.println("0. Á¾·á");
-            	System.out.println("==========================================");
-                System.out.print("¿øÇÏ´Â ÀÛ¾÷À» ¼±ÅÃÇÏ¼¼¿ä>> ");
+            	System.out.println("==================================");
+                System.out.print("1. ì¡°íšŒ"+"\t");
+                System.out.print("2. ì¶”ê°€"+"\t");
+                System.out.print("3. ìˆ˜ì •"+"\t");
+                System.out.print("4. ì‚­ì œ"+"\t");
+                System.out.print("0. ì¢…ë£Œ>>");
                 String choice = consoleReader.readLine();
 
                 switch (choice) {
                     case "1":
                         out.println("LIST");
-                        System.out.println("°Ô½Ã±Û ¸ñ·Ï");
-                        System.out.println("¹øÈ£"+"\t"+"Á¦¸ñ"+"\t"+"ÀÛ¼ºÀÚ"+"\t"+"ÀÛ¼ºÀÏ");
-                    	System.out.println("==========================================");
-                       String message;
-                        while (!(message = in.readLine()).isEmpty()) {
+                        System.out.println("[ëª©ë¡]");
+                        System.out.println("ë²ˆí˜¸\tì œëª©\tì‘ì„±ì");        
+                        String message;
+                        while ((message = in.readLine()) != null && !message.isEmpty()) {
                             System.out.println(message);
                         }
                         break;
                     case "2":
                         out.println("ADD");
-                        System.out.print("Á¦¸ñ>> ");
+                        System.out.print("ì œëª©>> ");
                         String title = consoleReader.readLine();
-                        System.out.print("³»¿ë>> ");
+                        System.out.print("ë‚´ìš©>> ");
                         String content = consoleReader.readLine();
-                        System.out.print("ÀÛ¼ºÀÚ>> ");
+                        System.out.print("ì‘ì„±ì>> ");
                         String author = consoleReader.readLine();
                         out.println(title);
                         out.println(content);
                         out.println(author);
                         break;
                     case "3":
-                        out.println("UPDATE"); // ¼öÁ¤ ¸í·ÉÀ» ¸ÕÀú º¸³À´Ï´Ù.
-                        out.println("LIST"); // °Ô½Ã±Û ¸ñ·ÏÀ» ¿äÃ»ÇÕ´Ï´Ù.
-                        System.out.println("°Ô½Ã±Û ¸ñ·Ï:");
-                        int i = 1;
-                        String listItem;
-                        while (!(listItem = in.readLine()).isEmpty()) {
-                            System.out.println(i + ". " + listItem);
-                            i++;
+                        out.println("LIST");
+                        System.out.println("[ëª©ë¡]");
+                        while ((message = in.readLine()) != null && !message.isEmpty()) {
+                            System.out.println(message);
                         }
-                        System.out.print("¼öÁ¤ÇÒ °Ô½Ã±Û ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
-                        int updateIndex = Integer.parseInt(consoleReader.readLine()) - 1;
-                        System.out.print("¼öÁ¤ÇÒ Ç×¸ñÀ» ¼±ÅÃÇÏ¼¼¿ä (title/content/author): "); // ¼öÁ¤ÇÒ Ç×¸ñÀ» ¼±ÅÃÇÕ´Ï´Ù.
+                        System.out.print("ìˆ˜ì •í•  ê¸€ ë²ˆí˜¸>> ");
+                        int updateIndex = Integer.parseInt(consoleReader.readLine())-1;
+                        System.out.print("ìˆ˜ì •í•  í•­ëª©(ì œëª©/ë‚´ìš©/ì‘ì„±ì)>> ");
                         String fieldToUpdate = consoleReader.readLine();
-                        System.out.print("»õ·Î¿î °ªÀ» ÀÔ·ÂÇÏ¼¼¿ä: ");
+                        System.out.print("ìˆ˜ì •ì‚¬í•­>> ");
                         String updatedValue = consoleReader.readLine();
+                        out.println("UPDATE");
                         out.println(updateIndex);
                         out.println(fieldToUpdate);
                         out.println(updatedValue);
                         break;
-
-
-
-
-
-                   
                     case "4":
                         out.println("LIST");
-                        System.out.println("°Ô½Ã±Û ¸ñ·Ï:");
-                        int j = 1;
-                        String deleteItem;
-                        while (!(deleteItem = in.readLine()).isEmpty()) {
-                            System.out.println(j + ". " + deleteItem);
-                            j++;
+                        System.out.println("[ëª©ë¡]");
+                        while ((message = in.readLine()) != null && !message.isEmpty()) {
+                            System.out.println(message);
                         }
-                        System.out.print("»èÁ¦ÇÒ °Ô½Ã±Û ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
-                        int deleteIndex = Integer.parseInt(consoleReader.readLine()) - 1; // »ç¿ëÀÚ ÀÔ·ÂÀº 1ºÎÅÍ ½ÃÀÛÇÏ¹Ç·Î ÀÎµ¦½º¿¡ -1À» ÇØÁİ´Ï´Ù.
+                        System.out.print("ì‚­ì œí•  ê¸€ ë²ˆí˜¸>> ");
+                        int deleteIndex = Integer.parseInt(consoleReader.readLine())-1;
                         out.println("DELETE");
                         out.println(deleteIndex);
                         break;
-
-
                     case "0":
                         out.println("EXIT");
                         socket.close();
                         return;
                     default:
-                        System.out.println("¿Ã¹Ù¸£Áö ¾ÊÀº ¼±ÅÃÀÔ´Ï´Ù.");
+                        System.out.println("ì˜ëª»ëœ ì…ë ¥");
                         break;
                 }
             }
