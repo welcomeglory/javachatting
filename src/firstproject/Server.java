@@ -10,12 +10,12 @@ public class Server {
 
     public static void main(String[] args) {
         try {
-            ServerSocket serverSocket = new ServerSocket(12345); // Æ÷Æ® ¹øÈ£´Â ÇÊ¿ä¿¡ µû¶ó º¯°æ °¡´É
-            System.out.println("¼­¹ö°¡ ½ÃÀÛµÇ¾ú½À´Ï´Ù.");
+            ServerSocket serverSocket = new ServerSocket(12345); 
+            System.out.println("ì„œë²„ê°€ ì‹œì‘ë˜ì—ˆìŠµë‹ˆë‹¤.");
 
             while (true) {
                 Socket socket = serverSocket.accept();
-                System.out.println("Å¬¶óÀÌ¾ğÆ®°¡ Á¢¼ÓÇß½À´Ï´Ù.");
+                System.out.println("í´ë¼ì´ì–¸íŠ¸ê°€ ì ‘ì†í–ˆìŠµë‹ˆë‹¤.");
 
                 ClientHandler clientHandler = new ClientHandler(socket);
                 clientHandler.start();
@@ -78,7 +78,7 @@ public class Server {
         private String getPostList() {
             StringBuilder stringBuilder = new StringBuilder();
             for (int i = 0; i < posts.size(); i++) {
-                stringBuilder.append(i + 1).append(". ").append(posts.get(i)).append("\n");
+                stringBuilder.append(i+1).append(". ").append(posts.get(i)).append("\n");
             }
             return stringBuilder.toString();
         }
@@ -91,13 +91,13 @@ public class Server {
             if (index >= 0 && index < posts.size()) {
                 Post post = posts.get(index);
                 switch (fieldToUpdate) {
-                    case "title":
+                    case "ì œëª©":
                         post.setTitle(updatedValue);
                         break;
-                    case "content":
+                    case "ë‚´ìš©":
                         post.setContent(updatedValue);
                         break;
-                    case "author":
+                    case "ì‘ì„±ì":
                         post.setAuthor(updatedValue);
                         break;
                     default:
@@ -150,7 +150,7 @@ public class Server {
 
         @Override
         public String toString() {
-            return "Á¦¸ñ: " + title + ", ³»¿ë: " + content + ", ÀÛ¼ºÀÚ: " + author;
+            return title + "\t" + content + "\t " + author;
         }
     }
 }
